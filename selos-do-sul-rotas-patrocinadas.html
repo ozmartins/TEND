@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selos do Sul — Rotas patrocinadas</title>
+<meta name="description" content="Faça o turista circular entre os municípios da sua região com uma rota patrocinada no Selos do Sul.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14213A; --navy:#1B2A6B; --cream:#FFF7E6; --sand:#FFE9A8;
+    --yellow:#FFC93C; --coral:#FF6B57; --teal:#2FC3D8; --green:#3ECF8E;
+    --text:#2B3558; --soft:#C9D4F7;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.6;font-size:17px}
+  h1,h2,h3{font-family:'Baloo 2',cursive;font-weight:800;margin:0;line-height:1.1}
+  p{margin:0}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+  section{padding:88px 0}
+  .eyebrow{display:block;font-family:'Baloo 2',cursive;font-weight:800;font-size:13px;letter-spacing:.12em;margin-bottom:14px}
+  h2{font-size:38px}
+  .head{max-width:640px;margin-bottom:44px}
+
+  .btn{display:inline-block;padding:15px 26px;border-radius:999px;background:var(--yellow);border:3px solid var(--ink);
+    box-shadow:0 5px 0 var(--ink);font-family:'Baloo 2',cursive;font-weight:800;font-size:17px;color:var(--ink);
+    text-decoration:none;cursor:pointer;text-align:center;transition:transform .12s,box-shadow .12s}
+  .btn:hover{transform:translateY(2px);box-shadow:0 3px 0 var(--ink)}
+  .btn:active{transform:translateY(5px);box-shadow:0 0 0 var(--ink)}
+  .btn:focus-visible,a:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+  .btn.light{background:var(--cream)}
+
+  /* topo */
+  header.hero{background:linear-gradient(160deg,#243589 0%,var(--navy) 50%,#131E4D 100%);color:var(--cream);padding:28px 0 80px}
+  .logo{font-family:'Baloo 2',cursive;font-weight:800;font-size:24px;line-height:1;margin-bottom:64px}
+  .logo span{color:var(--yellow)}
+  .kicker{display:inline-block;padding:6px 14px;border-radius:999px;border:2px solid var(--yellow);color:var(--yellow);font-weight:800;font-size:13px;letter-spacing:.06em;margin-bottom:22px}
+  .hero h1{font-size:54px;max-width:820px;margin-bottom:22px}
+  .hero h1 span{color:var(--yellow)}
+  .lead{font-size:20px;color:var(--soft);max-width:640px;margin-bottom:56px}
+  .benefits{display:flex;flex-wrap:wrap;gap:20px;list-style:none;margin:0;padding:0}
+  .benefits li{flex:1 1 220px;min-width:0;background:rgba(255,247,230,.08);border:2px solid rgba(255,247,230,.25);border-radius:20px;padding:22px}
+  .benefits .ico{width:44px;height:44px;border-radius:14px;border:3px solid var(--ink);display:grid;place-items:center;margin-bottom:14px}
+  .benefits h3{font-size:20px;margin-bottom:6px}
+  .benefits p{font-size:15.5px;color:var(--soft)}
+  .hero .cta{margin-top:44px}
+
+  .compare{display:flex;flex-wrap:wrap;gap:16px;margin:-24px 0 48px}
+  .cmp{flex:1 1 280px;max-width:380px;display:flex;flex-direction:column;gap:2px;padding:16px 20px;border-radius:18px;border:3px solid var(--ink)}
+  .cmp b{font-family:'Baloo 2',cursive;font-size:20px;line-height:1.1}
+  .cmp span{font-weight:700;font-size:15.5px}
+  .cmp.other{background:rgba(255,247,230,.1);border-color:rgba(255,247,230,.3);color:var(--soft)}
+  .cmp.ours{background:var(--yellow);color:var(--ink);box-shadow:0 5px 0 var(--ink)}
+
+  /* como funciona */
+  .steps{display:flex;flex-wrap:wrap;gap:20px;counter-reset:s}
+  .step{flex:1 1 240px;min-width:0;background:#fff;border:3px solid var(--ink);border-radius:22px;padding:24px;box-shadow:0 6px 0 var(--ink);display:flex;flex-direction:column;gap:8px}
+  .step::before{counter-increment:s;content:counter(s);width:40px;height:40px;border-radius:50%;background:var(--yellow);border:3px solid var(--ink);display:grid;place-items:center;font-family:'Baloo 2',cursive;font-weight:800;font-size:18px}
+  .step h3{font-size:21px}
+  .step p{font-size:15.5px;color:var(--text)}
+  .how .eyebrow{color:#B8351F}
+
+  /* planos */
+  .plans-sec{background:var(--sand)}
+  .plans-sec .eyebrow{color:#8A4A00}
+  .plans{display:flex;flex-wrap:wrap;gap:24px;align-items:stretch}
+  .plan{flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:16px;padding:28px;border-radius:26px;background:#fff;border:4px solid var(--ink);box-shadow:0 8px 0 var(--ink)}
+  .plan.feat{background:var(--ink);color:var(--cream);box-shadow:0 8px 0 #B8351F}
+  .plan .pill{align-self:flex-start;padding:4px 12px;border-radius:999px;border:3px solid var(--ink);font-family:'Baloo 2',cursive;font-weight:800;font-size:12px;letter-spacing:.08em;color:var(--ink)}
+  .plan h3{font-size:28px}
+  .plan p{font-size:16px;color:var(--text)}
+  .plan.feat p{color:var(--soft)}
+  .plan ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-weight:700;font-size:16px;line-height:1.4}
+  .price{margin-top:auto;padding-top:10px;font-family:'Baloo 2',cursive;font-weight:800;font-size:30px;line-height:1}
+  .price small{display:block;margin-top:6px;font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;color:var(--text)}
+  .plan.feat .price{color:var(--yellow)}
+  .plan.feat .price small{color:var(--soft)}
+  .setup{padding:10px 14px;border-radius:14px;border:2px dashed var(--ink);background:var(--cream);font-weight:800;font-size:15px;color:var(--ink)}
+  .setup b{display:block;font-family:'Baloo 2',cursive;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+  .setup em{font-style:normal;font-weight:700;color:var(--text)}
+  .plan.feat .setup{background:rgba(255,247,230,.1);border-color:var(--yellow);color:var(--cream)}
+  .plan.feat .setup b{color:var(--yellow)}
+  .plan.feat .setup em{color:var(--soft)}
+  .note{margin-top:28px;font-weight:700;font-size:15px;color:var(--text);max-width:720px}
+
+  footer{background:#0C1329;color:#B9C6F2;padding:28px 0;font-size:14px;font-weight:700}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+  footer .logo{font-size:20px;color:var(--cream);margin:0}
+
+  @media (max-width:640px){
+    .wrap{padding:0 20px}
+    section{padding:64px 0}
+    .logo{margin-bottom:44px}
+    .hero h1{font-size:38px}
+    .lead{font-size:18px}
+    h2{font-size:30px}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+
+<!-- 1. PROMESSA E BENEFÍCIOS -->
+<header class="hero">
+  <div class="wrap">
+    <div class="logo">SELOS <span>DO SUL</span></div>
+
+    <span class="kicker">PARA ENTIDADES E GESTORES DE TURISMO</span>
+    <h1>Pague só quando o turista <span>realmente visitar.</span></h1>
+    <p class="lead">Uma rota patrocinada no Selos do Sul leva visitantes de um município ao outro. Você investe por check-in: cada visita registrada no local é cobrada, e visualização sem visita não custa nada.</p>
+
+    <div class="compare" aria-label="Comparação de modelos de cobrança">
+      <div class="cmp other"><b>Meta e Google</b><span>Você paga por visualização ou clique.</span></div>
+      <div class="cmp ours"><b>Selos do Sul</b><span>Você paga por check-in no local.</span></div>
+    </div>
+
+    <ul class="benefits">
+      <li>
+        <div class="ico" style="background:var(--teal)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#14213A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.5"/></svg></div>
+        <h3>Pagamento por visita</h3>
+        <p>Sem custo por visualização ou clique. O investimento acompanha as visitas reais.</p>
+      </li>
+      <li>
+        <div class="ico" style="background:var(--coral)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#14213A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.6"/></svg></div>
+        <h3>Visitas comprovadas</h3>
+        <p>O check-in só vale com presença física. Pagar pela rota nunca gera visitas.</p>
+      </li>
+      <li>
+        <div class="ico" style="background:var(--yellow)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#14213A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+        <h3>Relatório de circulação</h3>
+        <p>Check-ins por município, rotas concluídas e pontos mais procurados.</p>
+      </li>
+      <li>
+        <div class="ico" style="background:var(--green)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#14213A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
+        <h3>Roteiro integrado na prática</h3>
+        <p>O turista passa a ver os municípios como partes de uma mesma jornada.</p>
+      </li>
+    </ul>
+
+    <div class="cta"><a class="btn" href="#planos">Ver planos e preços</a></div>
+  </div>
+</header>
+
+<!-- 2. COMO FUNCIONA -->
+<section class="how" id="como-funciona">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">COMO FUNCIONA</span>
+      <h2>Quatro passos, do mapa ao relatório.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Você escolhe</h3><p>Os municípios que quer conectar e o período da rota.</p></div>
+      <div class="step"><h3>Nós montamos</h3><p>Uma rota com pontos, selos e uma conquista final.</p></div>
+      <div class="step"><h3>O turista percorre</h3><p>Cada selo exige check-in no local.</p></div>
+      <div class="step"><h3>Você recebe</h3><p>Um relatório com a circulação entre os pontos.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. PLANOS E PREÇOS -->
+<section class="plans-sec" id="planos">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">PLANOS E PREÇOS</span>
+      <h2>Escolha o tamanho da sua rota.</h2>
+    </div>
+
+    <div class="plans">
+      <div class="plan">
+        <div class="pill" style="background:var(--teal)">PILOTO</div>
+        <h3>Rota Piloto</h3>
+        <p>Para validar a ideia em uma área limitada.</p>
+        <ul>
+          <li>1 rota com [N] pontos</li>
+          <li>[N] municípios</li>
+          <li>Relatório final</li>
+        </ul>
+        <div class="price">R$ 3,00 por check-in<small>[teto de investimento e período a definir]</small></div>
+        <div class="setup"><b>Taxa de contratação</b>R$ [VALOR] <em>(negociável)</em></div>
+        <a class="btn" href="mailto:SEU-EMAIL@AQUI?subject=Rota%20Piloto%20-%20Selos%20do%20Sul">Quero o Piloto</a>
+      </div>
+
+      <div class="plan feat">
+        <div class="pill" style="background:var(--yellow);border-color:var(--yellow)">REGIONAL</div>
+        <h3>Rota Regional</h3>
+        <p>Para integrar vários municípios em uma jornada maior.</p>
+        <ul>
+          <li>1 rota com [N] pontos</li>
+          <li>[N] municípios</li>
+          <li>Identidade da entidade na rota</li>
+          <li>Relatório mensal</li>
+        </ul>
+        <div class="price">R$ 3,00 por check-in<small>[teto de investimento e período a definir]</small></div>
+        <div class="setup"><b>Taxa de contratação</b>R$ [VALOR] <em>(negociável)</em></div>
+        <a class="btn light" href="mailto:SEU-EMAIL@AQUI?subject=Rota%20Regional%20-%20Selos%20do%20Sul">Quero a Regional</a>
+      </div>
+
+      <div class="plan">
+        <div class="pill" style="background:#A97BE0">TEMÁTICA</div>
+        <h3>Rotas Temáticas</h3>
+        <p>Para manter a região em movimento o ano todo.</p>
+        <ul>
+          <li>[N] rotas por tema (vinho, gastronomia, natureza)</li>
+          <li>Campanhas por temporada</li>
+          <li>Relatório mensal e comparativo</li>
+        </ul>
+        <div class="price">R$ 3,00 por check-in<small>[teto de investimento e período a definir]</small></div>
+        <div class="setup"><b>Taxa de contratação</b>R$ [VALOR] <em>(negociável)</em></div>
+        <a class="btn" href="mailto:SEU-EMAIL@AQUI?subject=Rotas%20Tematicas%20-%20Selos%20do%20Sul">Quero as Temáticas</a>
+      </div>
+    </div>
+
+    <p class="note">A taxa de contratação cobre a implantação da rota (desenho, conteúdo e relatório) e é negociável conforme o escopo. Quer um formato sob medida? Fale com a gente e montamos a rota com os municípios e o período da sua entidade.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">SELOS <span>DO SUL</span></div>
+    <div>Colecione lugares. Integre a região.</div>
+  </div>
+</footer>
+
+</body>
+</html>

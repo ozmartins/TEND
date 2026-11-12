@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selos do Sul — Destaque para parceiros</title>
+<meta name="description" content="Destaque seu negócio no mapa do Selos do Sul e pague só quando o turista fizer check-in no seu endereço.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14213A; --navy:#1B2A6B; --cream:#FFF7E6; --sand:#FFE9A8;
+    --yellow:#FFC93C; --coral:#FF6B57; --teal:#2FC3D8; --green:#3ECF8E;
+    --text:#2B3558; --soft:#C9D4F7;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.6;font-size:17px}
+  h1,h2,h3{font-family:'Baloo 2',cursive;font-weight:800;margin:0;line-height:1.1}
+  p{margin:0}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+  section{padding:88px 0}
+  .eyebrow{display:block;font-family:'Baloo 2',cursive;font-weight:800;font-size:13px;letter-spacing:.12em;margin-bottom:14px}
+  h2{font-size:38px}
+  .head{max-width:640px;margin-bottom:44px}
+
+  .btn{display:inline-block;padding:15px 26px;border-radius:999px;background:var(--yellow);border:3px solid var(--ink);
+    box-shadow:0 5px 0 var(--ink);font-family:'Baloo 2',cursive;font-weight:800;font-size:17px;color:var(--ink);
+    text-decoration:none;cursor:pointer;text-align:center;transition:transform .12s,box-shadow .12s}
+  .btn:hover{transform:translateY(2px);box-shadow:0 3px 0 var(--ink)}
+  .btn:active{transform:translateY(5px);box-shadow:0 0 0 var(--ink)}
+  .btn.light{background:var(--cream)}
+  .btn:focus-visible,a:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+
+  /* topo */
+  header.hero{background:radial-gradient(circle at 20% 15%,#2C43A0 0%,var(--navy) 55%,#131E4D 100%);color:var(--cream);padding:28px 0 80px}
+  .logo{font-family:'Baloo 2',cursive;font-weight:800;font-size:24px;line-height:1;margin-bottom:64px}
+  .logo span{color:var(--yellow)}
+  .tag{display:inline-block;padding:7px 14px;border-radius:999px;background:var(--yellow);border:3px solid var(--ink);box-shadow:0 4px 0 var(--ink);
+    font-family:'Baloo 2',cursive;font-weight:800;font-size:12px;letter-spacing:.1em;color:var(--ink);margin-bottom:24px}
+  .hero h1{font-size:56px;max-width:820px;margin-bottom:22px;text-shadow:0 5px 0 var(--ink)}
+  .hero h1 span{color:var(--yellow)}
+  .lead{font-size:20px;color:var(--soft);max-width:640px;margin-bottom:32px;font-weight:700}
+  .compare{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:48px}
+  .cmp{flex:1 1 280px;max-width:380px;display:flex;flex-direction:column;gap:2px;padding:16px 20px;border-radius:18px;border:3px solid var(--ink)}
+  .cmp b{font-family:'Baloo 2',cursive;font-size:20px;line-height:1.1}
+  .cmp span{font-weight:700;font-size:15.5px}
+  .cmp.other{background:rgba(255,247,230,.1);border-color:rgba(255,247,230,.3);color:var(--soft)}
+  .cmp.ours{background:var(--yellow);color:var(--ink);box-shadow:0 5px 0 var(--ink)}
+  .benefits{display:flex;flex-wrap:wrap;gap:20px;list-style:none;margin:0;padding:0}
+  .benefits li{flex:1 1 220px;min-width:0;background:rgba(255,247,230,.08);border:2px solid rgba(255,247,230,.25);border-radius:20px;padding:22px}
+  .benefits .ico{width:44px;height:44px;border-radius:14px;border:3px solid var(--ink);display:grid;place-items:center;margin-bottom:14px}
+  .benefits h3{font-size:20px;margin-bottom:6px}
+  .benefits p{font-size:15.5px;color:var(--soft);font-weight:600}
+  .hero .cta{margin-top:44px}
+
+  /* como funciona */
+  .how .eyebrow{color:#B8351F}
+  .steps{display:flex;flex-wrap:wrap;gap:20px;counter-reset:s}
+  .step{flex:1 1 240px;min-width:0;background:#fff;border:3px solid var(--ink);border-radius:22px;padding:24px;box-shadow:0 6px 0 var(--ink);display:flex;flex-direction:column;gap:8px}
+  .step::before{counter-increment:s;content:counter(s);width:40px;height:40px;border-radius:50%;background:var(--yellow);border:3px solid var(--ink);display:grid;place-items:center;font-family:'Baloo 2',cursive;font-weight:800;font-size:18px}
+  .step h3{font-size:21px}
+  .step p{font-size:15.5px;color:var(--text);font-weight:600}
+
+  /* planos */
+  .plans-sec{background:var(--sand)}
+  .plans-sec .eyebrow{color:#8A4A00}
+  .plans{display:flex;flex-wrap:wrap;gap:24px;align-items:stretch}
+  .plan{flex:1 1 320px;max-width:520px;min-width:0;display:flex;flex-direction:column;gap:16px;padding:28px;border-radius:26px;background:#fff;border:4px solid var(--ink);box-shadow:0 8px 0 var(--ink)}
+  .plan.feat{background:var(--ink);color:var(--cream);box-shadow:0 8px 0 #B8351F}
+  .plan .pill{align-self:flex-start;padding:4px 12px;border-radius:999px;border:3px solid var(--ink);font-family:'Baloo 2',cursive;font-weight:800;font-size:12px;letter-spacing:.08em;color:var(--ink)}
+  .plan h3{font-size:28px}
+  .plan p{font-size:16px;color:var(--text);font-weight:600}
+  .plan.feat p{color:var(--soft)}
+  .plan ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-weight:700;font-size:16px;line-height:1.4}
+  .flow{display:flex;align-items:stretch;gap:6px;margin:2px 0}
+  .flow .st{flex:1;padding:10px 6px;border-radius:12px;background:rgba(255,247,230,.12);text-align:center;font-weight:800;font-size:13px;line-height:1.25;color:var(--cream)}
+  .flow .st i{display:block;font-style:normal;font-size:22px;margin-bottom:4px}
+  .flow .st.hot{background:var(--yellow);color:var(--ink)}
+  .flow .ar{align-self:center;color:var(--yellow);font-weight:900}
+  .plan.base{box-shadow:0 8px 0 #1E8FA3}
+  .plan.base .flow .st{background:#EAF8FB;color:var(--ink)}
+  .plan.base .flow .st.hot{background:var(--teal);color:var(--ink)}
+  .plan.base .flow .ar{color:#1E8FA3}
+  .plan.base .price{color:var(--navy)}
+  .plan ul.icons{list-style:none;padding-left:0}
+  .plan ul.icons li{display:flex;gap:10px;align-items:flex-start}
+  .plan ul.icons li span{flex:none;width:28px;height:28px;display:grid;place-items:center;border-radius:9px;background:var(--cream);border:2px solid var(--ink);font-size:15px}
+  .gets{padding:12px 14px;border-radius:14px;border:2px dashed var(--ink);background:var(--cream);font-weight:700;font-size:15px;color:var(--ink)}
+  .gets b{display:block;font-family:'Baloo 2',cursive;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+  .plan.feat .gets{background:rgba(255,247,230,.1);border-color:var(--yellow);color:var(--cream)}
+  .plan.feat .gets b{color:var(--yellow)}
+  .plan.feat li b{color:var(--yellow)}
+  .price{margin-top:auto;padding-top:10px;font-family:'Baloo 2',cursive;font-weight:800;font-size:30px;line-height:1}
+  .price small{display:block;margin-top:6px;font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;color:var(--text)}
+  .plan.feat .price{color:var(--yellow)}
+  .plan.feat .price small{color:var(--soft)}
+  .note{margin-top:28px;font-weight:700;font-size:15px;color:var(--text);max-width:720px}
+
+  footer{background:#0C1329;color:#B9C6F2;padding:28px 0;font-size:14px;font-weight:700}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+  footer .logo{font-size:20px;color:var(--cream);margin:0}
+
+  @media (max-width:640px){
+    .wrap{padding:0 20px}
+    section{padding:64px 0}
+    .logo{margin-bottom:44px}
+    .hero h1{font-size:40px}
+    .lead{font-size:18px}
+    h2{font-size:30px}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+
+<!-- 1. PROMESSA E BENEFÍCIOS -->
+<header class="hero">
+  <div class="wrap">
+    <div class="logo">SELOS <span>DO SUL</span></div>
+
+    <span class="tag">PARA ESTABELECIMENTOS E EXPERIÊNCIAS</span>
+    <h1>Pague só quando o turista <span>chegar ao seu negócio.</span></h1>
+    <p class="lead">No Selos do Sul seu negócio ganha destaque no mapa de quem está explorando a região. Você investe por check-in: cada visita registrada no seu endereço é cobrada, e visualização sem visita não custa nada.</p>
+
+    <div class="compare" aria-label="Comparação de modelos de cobrança">
+      <div class="cmp other"><b>Meta e Google</b><span>Você paga por visualização ou clique.</span></div>
+      <div class="cmp ours"><b>Selos do Sul</b><span>Você paga por check-in no local.</span></div>
+    </div>
+
+    <ul class="benefits">
+      <li>
+        <div class="ico" style="background:var(--yellow)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#14213A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M8 12h8"/></svg></div>
+        <h3>Pagamento por visita</h3>
+        <p>O investimento acompanha as visitas reais ao seu endereço.</p>
+      </li>
+      <li>
+        <div class="ico" style="background:var(--coral)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#14213A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.6"/></svg></div>
+        <h3>Destaque no mapa</h3>
+        <p>Seu pino se diferencia para quem procura o que visitar por perto.</p>
+      </li>
+      <li>
+        <div class="ico" style="background:var(--teal)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#14213A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.5"/></svg></div>
+        <h3>Selo com a sua marca</h3>
+        <p>Quem visita leva um selo seu para o álbum e ganha XP pela visita.</p>
+      </li>
+      <li>
+        <div class="ico" style="background:var(--green)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#14213A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
+        <h3>Visitas comprovadas</h3>
+        <p>O check-in só vale com presença física.</p>
+      </li>
+    </ul>
+
+    <div class="cta"><a class="btn" href="#planos">Ver planos e preços</a></div>
+  </div>
+</header>
+
+<!-- 2. COMO FUNCIONA -->
+<section class="how" id="como-funciona">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">COMO FUNCIONA</span>
+      <h2>Quatro passos, da vitrine ao balcão.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Você aparece</h3><p>Seu negócio ganha pino em destaque e selo próprio.</p></div>
+      <div class="step"><h3>O turista chega</h3><p>Ao chegar perto, ele faz o check-in e captura o selo.</p></div>
+      <div class="step"><h3>Você paga a visita</h3><p>Só os check-ins registrados são cobrados.</p></div>
+      <div class="step"><h3>Você acompanha</h3><p>Veja quantas visitas você recebeu e quanto investiu.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. PLANOS E PREÇOS -->
+<section class="plans-sec" id="planos">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">PLANOS E PREÇOS</span>
+      <h2>Escolha o destaque que cabe no seu negócio.</h2>
+    </div>
+
+    <div class="plans">
+      <div class="plan base">
+        <div class="pill" style="background:var(--teal)">PONTO</div>
+        <h3>Pino em destaque</h3>
+        <p>Para ser visto e atrair visitas. Seu estabelecimento se destaca no mapa e tem selo próprio.</p>
+        <div class="flow" aria-label="Jornada do turista">
+          <div class="st"><i>🗺️</i>Vê seu pino em destaque no mapa</div>
+          <div class="ar">→</div>
+          <div class="st"><i>📍</i>Vai até o seu negócio</div>
+          <div class="ar">→</div>
+          <div class="st hot"><i>🏅</i>Faz check-in e leva o selo</div>
+        </div>
+        <ul class="icons">
+          <li><span>📌</span>Pino com destaque visual</li>
+          <li><span>🏅</span>Selo exclusivo do local</li>
+          <li><span>📸</span>Descrição e fotos do ponto</li>
+        </ul>
+        <div class="gets"><b>O turista ganha</b>O selo e XP pela visita.</div>
+        <div class="price">R$ 2,00 por check-in<small>[teto mensal de investimento a definir]</small></div>
+        <a class="btn" href="mailto:SEU-EMAIL@AQUI?subject=Pino%20em%20destaque%20-%20Selos%20do%20Sul">Quero o Pino em destaque</a>
+      </div>
+
+      <div class="plan feat">
+        <div class="pill" style="background:var(--yellow);border-color:var(--yellow)">CAMPANHA</div>
+        <h3>Destaque + cashback</h3>
+        <p>Para transformar visita em venda. O turista ganha dinheiro de volta por compra com você, e o custo já está no preço do check-in.</p>
+        <div class="flow" aria-label="Jornada do turista">
+          <div class="st"><i>📍</i>Faz check-in no seu negócio</div>
+          <div class="ar">→</div>
+          <div class="st"><i>🏅</i>Ganha o selo e compra no balcão</div>
+          <div class="ar">→</div>
+          <div class="st hot"><i>💸</i>Recebe cashback</div>
+        </div>
+        <ul>
+          <li>Tudo do plano Ponto</li>
+          <li><b>60% do que você investe volta para o seu cliente</b> (R$ 3 de cada R$ 5)</li>
+          <li>O turista acumula o saldo no app e saca por Pix a partir de R$ 15</li>
+        </ul>
+        <div class="gets"><b>O turista ganha</b>O selo, XP e cashback por compra feita.</div>
+        <div class="price">R$ 5,00 por check-in<small>[teto mensal de investimento a definir]</small></div>
+        <a class="btn light" href="mailto:SEU-EMAIL@AQUI?subject=Destaque%20%2B%20cashback%20-%20Selos%20do%20Sul">Quero Destaque + cashback</a>
+      </div>
+    </div>
+
+    <p class="note">Você define quanto quer investir por mês. Ao atingir o limite, o destaque pausa e não há cobrança além dele.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">SELOS <span>DO SUL</span></div>
+    <div>Colecione lugares. Destaque quem vale a visita.</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+body{margin:0;background:oklch(0.96 0.005 90);font-family:'Manrope',sans-serif;}
+* { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+a{color:#2f6fed;} a:hover{color:#1f4fc9;}
+@keyframes pop{0%{transform:scale(0.6);opacity:0}60%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(220px) rotate(360deg);opacity:0}}
+@keyframes ring{0%{transform:scale(0.8);opacity:0.6}100%{transform:scale(1.6);opacity:0}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;">
+  <div style="position:relative;width:412px;height:890px;border-radius:44px;background:#111214;padding:14px;box-shadow:0 30px 60px -20px rgba(0,0,0,0.35);">
+    <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:#000;z-index:20;"></div>
+    <div style="position:relative;width:100%;height:100%;border-radius:32px;overflow:hidden;background:#fff;display:flex;flex-direction:column;">
+
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 22px 4px;font-size:13px;font-weight:700;color:#111;flex-shrink:0;">
+        <span>9:41</span>
+        <div style="display:flex;gap:5px;align-items:center;">
+          <div style="width:16px;height:10px;border:1.5px solid #111;border-radius:2px;position:relative;"><div style="position:absolute;inset:1.5px;background:#111;border-radius:1px;"></div></div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-height:0;display:flex;flex-direction:column;position:relative;">
+
+        <sc-if value="{{ isExplore }}" hint-placeholder-val="{{ true }}">
+          <div style="flex:1;overflow-y:auto;padding:18px 20px 10px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;">
+              <div>
+                <div style="font-size:13px;color:#8a8f98;font-weight:600;margin-bottom:2px;">📍 Criciúma, SC</div>
+                <div style="font-size:23px;font-weight:800;color:#111;letter-spacing:-0.3px;">Explore Criciúma</div>
+              </div>
+              <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#2f6fed,#6ea1ff);flex-shrink:0;"></div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:10px;background:oklch(0.97 0.01 90);border-radius:16px;padding:14px 16px;margin-bottom:22px;">
+              <div style="width:36px;height:36px;flex-shrink:0;border-radius:10px;background:#d98b2b22;display:flex;align-items:center;justify-content:center;font-size:18px;">🏆</div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:18px;font-weight:800;color:#111;white-space:nowrap;">{{ pointsLabel }}</div>
+                <div style="font-size:12px;color:#8a8f98;font-weight:600;white-space:nowrap;">Nível 7 · Explorador</div>
+              </div>
+            </div>
+
+            <div style="font-size:16px;font-weight:800;color:#111;margin-bottom:12px;">Próximos de você</div>
+            <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:26px;">
+              <sc-for list="{{ attractions }}" as="a" hint-placeholder-count="3">
+                <div onClick="{{ a.open }}" style="display:flex;gap:12px;background:#fff;border:1px solid #eee;border-radius:18px;padding:10px;cursor:pointer;">
+                  <div style="width:84px;height:84px;border-radius:14px;flex-shrink:0;background-image:url({{ a.img }});background-size:cover;background-position:center;position:relative;">
+                    <sc-if value="{{ a.visited }}" hint-placeholder-val="{{ false }}">
+                      <div style="position:absolute;top:6px;left:6px;background:#1f8a5f;color:#fff;font-size:10px;font-weight:800;padding:3px 7px;border-radius:20px;">✓ Visitado</div>
+                    </sc-if>
+                  </div>
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:3px;">
+                    <div style="font-size:15px;font-weight:800;color:#111;line-height:1.2;">{{ a.name }}</div>
+                    <div style="font-size:12px;color:#8a8f98;font-weight:600;">{{ a.category }} · {{ a.distance }}</div>
+                    <div style="font-size:12px;font-weight:800;color:#d98b2b;">+{{ a.pointsLabel }} pontos</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="font-size:16px;font-weight:800;color:#111;margin-bottom:12px;">Desafios próximos</div>
+            <div style="background:linear-gradient(135deg,#111214,#2b2d33);border-radius:18px;padding:18px;color:#fff;margin-bottom:20px;">
+              <div style="font-size:14px;font-weight:700;margin-bottom:10px;line-height:1.3;">Conheça 3 atrações históricas de Criciúma</div>
+              <div style="height:6px;background:#ffffff30;border-radius:10px;overflow:hidden;margin-bottom:8px;">
+                <div style="height:100%;width:66%;background:#d98b2b;border-radius:10px;"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700;color:#ffffffb0;">
+                <span>2 de 3 concluídas</span><span style="color:#f0b862;">Recompensa: +300 pontos</span>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isMap }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;position:relative;overflow:hidden;background:repeating-linear-gradient(135deg,#dfe7f2,#dfe7f2 12px,#e8eef7 12px,#e8eef7 24px);">
+            <div style="position:absolute;top:14px;left:16px;right:16px;display:flex;gap:8px;overflow-x:auto;z-index:5;">
+              <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+                <div onClick="{{ f.select }}" style="flex-shrink:0;padding:8px 14px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap;background:{{ f.bg }};color:{{ f.color }};box-shadow:0 2px 8px rgba(0,0,0,0.08);cursor:pointer;">{{ f.label }}</div>
+              </sc-for>
+            </div>
+
+            <div style="position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:16px;height:16px;border-radius:50%;background:#2f6fed;border:3px solid #fff;box-shadow:0 0 0 4px #2f6fed33;z-index:4;"></div>
+
+            <sc-for list="{{ pins }}" as="p" hint-placeholder-count="3">
+              <div onClick="{{ p.select }}" style="position:absolute;left:{{ p.left }};top:{{ p.top }};transform:translate(-50%,-100%);cursor:pointer;z-index:3;">
+                <div style="width:34px;height:34px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:{{ p.color }};display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(0,0,0,0.25);">
+                  <span style="transform:rotate(45deg);font-size:14px;">{{ p.icon }}</span>
+                </div>
+              </div>
+            </sc-for>
+
+            <sc-if value="{{ hasMapSelection }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:22px 22px 0 0;padding:16px;box-shadow:0 -8px 30px rgba(0,0,0,0.12);z-index:10;">
+                <div style="display:flex;gap:12px;">
+                  <div style="width:64px;height:64px;border-radius:14px;background-image:url({{ mapSel.img }});background-size:cover;background-position:center;flex-shrink:0;"></div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:15px;font-weight:800;color:#111;">{{ mapSel.name }}</div>
+                    <div style="font-size:12px;color:#8a8f98;font-weight:600;margin:2px 0;">{{ mapSel.category }} · {{ mapSel.distance }}</div>
+                    <div style="font-size:12px;font-weight:800;color:#d98b2b;">+{{ mapSel.pointsLabel }} pontos</div>
+                  </div>
+                </div>
+                <button onClick="{{ mapSel.open }}" style="margin-top:12px;width:100%;background:#2f6fed;color:#fff;border:none;border-radius:14px;padding:13px;font-size:14px;font-weight:800;cursor:pointer;">Ver detalhes</button>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isAchievements }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;overflow-y:auto;padding:18px 20px;">
+            <div style="font-size:22px;font-weight:800;color:#111;margin-bottom:4px;">Explorador — Nível 7</div>
+            <div style="font-size:13px;color:#8a8f98;font-weight:600;margin-bottom:14px;">{{ pointsLabel }}</div>
+            <div style="height:8px;background:#eee;border-radius:10px;overflow:hidden;margin-bottom:6px;">
+              <div style="height:100%;width:58%;background:linear-gradient(90deg,#2f6fed,#6ea1ff);border-radius:10px;"></div>
+            </div>
+            <div style="font-size:11px;color:#8a8f98;font-weight:700;margin-bottom:22px;">420 pontos para o Nível 8</div>
+
+            <div style="font-size:16px;font-weight:800;color:#111;margin-bottom:12px;">Conquistas</div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <sc-for list="{{ achievements }}" as="ac" hint-placeholder-count="4">
+                <div style="display:flex;gap:12px;background:oklch(0.97 0.01 90);border-radius:16px;padding:14px;">
+                  <div style="width:44px;height:44px;border-radius:50%;background:{{ ac.badgeBg }};display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">{{ ac.icon }}</div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:14px;font-weight:800;color:#111;">{{ ac.title }}</div>
+                    <div style="font-size:12px;color:#8a8f98;font-weight:600;margin:2px 0 6px;">{{ ac.desc }}</div>
+                    <div style="height:6px;background:#e7e7e7;border-radius:10px;overflow:hidden;margin-bottom:4px;">
+                      <div style="height:100%;width:{{ ac.pct }}%;background:{{ ac.barColor }};border-radius:10px;"></div>
+                    </div>
+                    <div style="font-size:11px;font-weight:700;color:{{ ac.barColor }};">{{ ac.progressLabel }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;overflow-y:auto;padding:24px 20px;">
+            <div style="display:flex;flex-direction:column;align-items:center;margin-bottom:20px;">
+              <div style="width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,#2f6fed,#6ea1ff);margin-bottom:10px;"></div>
+              <div style="font-size:19px;font-weight:800;color:#111;">Bianca Souza</div>
+              <div style="font-size:13px;color:#8a8f98;font-weight:600;">Nível 7 · {{ pointsLabel }}</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;background:oklch(0.97 0.01 90);border-radius:16px;padding:16px 8px;margin-bottom:24px;">
+              <div style="text-align:center;flex:1;"><div style="font-size:18px;font-weight:800;color:#111;">42</div><div style="font-size:11px;color:#8a8f98;font-weight:700;">locais visitados</div></div>
+              <div style="text-align:center;flex:1;border-left:1px solid #e5e5e5;border-right:1px solid #e5e5e5;"><div style="font-size:18px;font-weight:800;color:#111;">8</div><div style="font-size:11px;color:#8a8f98;font-weight:700;">cidades exploradas</div></div>
+              <div style="text-align:center;flex:1;"><div style="font-size:18px;font-weight:800;color:#111;">12</div><div style="font-size:11px;color:#8a8f98;font-weight:700;">conquistas</div></div>
+            </div>
+            <div style="font-size:16px;font-weight:800;color:#111;margin-bottom:12px;">Minha jornada</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <sc-for list="{{ journey }}" as="j" hint-placeholder-count="3">
+                <div style="display:flex;gap:12px;align-items:center;">
+                  <div style="width:48px;height:48px;border-radius:12px;background-image:url({{ j.img }});background-size:cover;background-position:center;flex-shrink:0;"></div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:13px;font-weight:800;color:#111;">{{ j.name }}</div>
+                    <div style="font-size:11px;color:#8a8f98;font-weight:600;">{{ j.when }}</div>
+                  </div>
+                  <div style="font-size:12px;font-weight:800;color:#1f8a5f;">+{{ j.pointsLabel }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;overflow-y:auto;">
+            <div style="position:relative;height:260px;background-image:url({{ selName_img }});background-size:cover;background-position:center;flex-shrink:0;">
+              <div onClick="{{ goBack }}" style="position:absolute;top:16px;left:16px;width:36px;height:36px;border-radius:50%;background:#ffffffee;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;">←</div>
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,0.55));"></div>
+              <div style="position:absolute;bottom:14px;left:18px;right:18px;color:#fff;">
+                <div style="font-size:12px;font-weight:700;opacity:0.9;">{{ selCategory }} · {{ selDistance }}</div>
+                <div style="font-size:21px;font-weight:800;">{{ selName }}</div>
+              </div>
+            </div>
+            <div style="padding:18px 20px;">
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:14px;font-size:13px;font-weight:700;color:#111;">
+                ⭐ 4.7 <span style="color:#8a8f98;font-weight:600;">(312 avaliações)</span>
+              </div>
+              <div style="background:#fff8ec;border:1px solid #f0dcb2;border-radius:14px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                <span style="font-size:13px;font-weight:700;color:#8a6a1f;">Recompensa por visita</span>
+                <span style="font-size:16px;font-weight:800;color:#d98b2b;">+{{ selPointsLabel }} pontos</span>
+              </div>
+              <div style="font-size:14px;line-height:1.55;color:#444;font-weight:500;margin-bottom:16px;">{{ selDescription }}</div>
+              <div style="display:flex;gap:8px;font-size:12px;color:#666;font-weight:600;margin-bottom:18px;">🕒 {{ selHours }}</div>
+              <div style="height:120px;border-radius:14px;background:repeating-linear-gradient(135deg,#dfe7f2,#dfe7f2 10px,#e8eef7 10px,#e8eef7 20px);margin-bottom:18px;position:relative;">
+                <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:#e2452e;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.2);"></div>
+              </div>
+
+              <sc-if value="{{ isTraveling }}" hint-placeholder-val="{{ false }}">
+                <div style="text-align:center;padding:20px 0;">
+                  <div style="font-size:14px;font-weight:700;color:#2f6fed;">Localizando você...</div>
+                  <div style="font-size:12px;color:#8a8f98;font-weight:600;margin-top:4px;">Aguardando confirmação de proximidade via GPS</div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ isFar }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ startTravel }}" style="width:100%;background:#111214;color:#fff;border:none;border-radius:14px;padding:15px;font-size:15px;font-weight:800;cursor:pointer;margin-bottom:10px;">📍 Como chegar</button>
+                <div style="text-align:center;font-size:12px;color:#8a8f98;font-weight:600;">Chegue a até 50 metros deste local para fazer check-in.</div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isCheckinReady }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;">
+            <div style="position:relative;height:220px;background-image:url({{ selName_img }});background-size:cover;background-position:center;flex-shrink:0;">
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(31,138,95,0.15),rgba(0,0,0,0.55));"></div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;">
+              <div style="position:relative;width:88px;height:88px;margin-bottom:18px;">
+                <div style="position:absolute;inset:0;border-radius:50%;background:#1f8a5f22;animation:ring 1.6s ease-out infinite;"></div>
+                <div style="position:absolute;inset:12px;border-radius:50%;background:#1f8a5f;display:flex;align-items:center;justify-content:center;font-size:36px;">📍</div>
+              </div>
+              <div style="font-size:22px;font-weight:800;color:#111;margin-bottom:6px;">Você chegou!</div>
+              <div style="font-size:14px;color:#666;font-weight:600;margin-bottom:22px;">Você está próximo o suficiente para registrar sua visita.</div>
+              <button onClick="{{ doCheckin }}" style="width:100%;background:#1f8a5f;color:#fff;border:none;border-radius:14px;padding:16px;font-size:15px;font-weight:800;cursor:pointer;margin-bottom:12px;">Fazer check-in</button>
+              <div style="font-size:13px;font-weight:700;color:#d98b2b;">Você ganhará +{{ selPointsLabel }} pontos</div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isCheckinDone }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,#fff,#f4f7ff);">
+            <sc-for list="{{ confetti }}" as="c" hint-placeholder-count="10">
+              <div style="position:absolute;top:0;left:{{ c.left }};width:8px;height:8px;border-radius:2px;background:{{ c.color }};animation:confettiFall {{ c.dur }} ease-in {{ c.delay }} infinite;"></div>
+            </sc-for>
+            <div style="width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,#d98b2b,#f0b862);display:flex;align-items:center;justify-content:center;font-size:44px;margin-bottom:20px;animation:pop 0.5s ease;">🏅</div>
+            <div style="font-size:22px;font-weight:800;color:#111;margin-bottom:4px;">Local descoberto!</div>
+            <div style="font-size:15px;font-weight:700;color:#444;margin-bottom:14px;">{{ selName }}</div>
+            <div style="font-size:28px;font-weight:800;color:#d98b2b;margin-bottom:6px;">+{{ selPointsLabel }} pontos</div>
+            <div style="font-size:13px;color:#8a8f98;font-weight:700;margin-bottom:24px;">{{ pointsLabel }}</div>
+            <div style="width:100%;background:oklch(0.97 0.01 90);border-radius:16px;padding:16px;margin-bottom:22px;">
+              <div style="font-size:13px;font-weight:800;color:#111;margin-bottom:8px;">Explorador de Criciúma</div>
+              <div style="height:8px;background:#e7e7e7;border-radius:10px;overflow:hidden;margin-bottom:6px;">
+                <div style="height:100%;width:60%;background:#2f6fed;border-radius:10px;"></div>
+              </div>
+              <div style="font-size:11px;font-weight:700;color:#8a8f98;">3 de 5 atrações visitadas</div>
+            </div>
+            <div style="display:flex;gap:10px;width:100%;">
+              <button onClick="{{ continueExploring }}" style="flex:1;background:#111214;color:#fff;border:none;border-radius:14px;padding:14px;font-size:14px;font-weight:800;cursor:pointer;">Continuar explorando</button>
+              <button onClick="{{ goAchievements }}" style="flex:1;background:#fff;color:#111;border:1.5px solid #ddd;border-radius:14px;padding:14px;font-size:14px;font-weight:800;cursor:pointer;">Ver conquistas</button>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+
+      <sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;justify-content:space-around;align-items:center;padding:10px 8px 22px;border-top:1px solid #eee;background:#fff;flex-shrink:0;">
+          <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="4">
+            <div onClick="{{ n.select }}" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;min-width:44px;">
+              <span style="font-size:20px;opacity:{{ n.opacity }};">{{ n.icon }}</span>
+              <span style="font-size:10px;font-weight:700;color:{{ n.color }};">{{ n.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = {
+      screen: 'explore',
+      points: 1240,
+      selectedId: 'mina',
+      mapSelectedId: null,
+      travelState: 'far',
+      filter: 'Todos',
+    };
+    this.startTravel = this.startTravel.bind(this);
+    this.doCheckin = this.doCheckin.bind(this);
+    this.continueExploring = this.continueExploring.bind(this);
+    this.goAchievements = this.goAchievements.bind(this);
+    this.goBack = this.goBack.bind(this);
+  }
+
+  getImg(){
+    return {
+      parque: 'https://picsum.photos/seed/parque-nacoes-criciuma/600/600',
+      museu: 'https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=600&q=80',
+      mina: 'https://picsum.photos/seed/mina-octavio-fontana/600/600',
+    };
+  }
+
+  getAttractions(){
+    return [
+      {id:'parque', name:'Parque das Nações', category:'Parque', distance:'850 m', points:50,
+        description:'Um dos maiores espaços de lazer de Criciúma, com áreas verdes, trilhas e uma réplica da locomotiva histórica da cidade.', hours:'Aberto todos os dias · 7h às 23h', left:'32%', top:'34%'},
+      {id:'museu', name:'Museu Augusto Casagrande', category:'Museu', distance:'1,4 km', points:80,
+        description:'Casarão centenário que preserva a memória da colonização de Criciúma, com acervo de objetos e fotografias históricas.', hours:'Seg a sex · 8h às 12h e 13h às 17h', left:'62%', top:'58%'},
+      {id:'mina', name:'Mina de Visitação Octávio Fontana', category:'Atração histórica', distance:'3,2 km', points:120,
+        description:'Única mina de carvão aberta à visitação na América Latina. Um passeio subterrâneo que revive a história da mineração na região.', hours:'Seg a sáb · 9h às 17h', left:'50%', top:'22%'},
+    ];
+  }
+
+  getFilterList(){ return ['Todos','História','Natureza','Museus','Gastronomia','Cultura']; }
+
+  getAchievementDefs(){
+    return [
+      {title:'Primeiros passos', desc:'Visite seu primeiro ponto turístico.', progress:1, total:1, icon:'🥾'},
+      {title:'Explorador de Criciúma', desc:'Visite 5 atrações da cidade.', progress:3, total:5, icon:'🧭'},
+      {title:'Historiador', desc:'Visite 10 atrações históricas.', progress:6, total:10, icon:'📜'},
+      {title:'Viajante', desc:'Faça check-in em atrações de 5 cidades diferentes.', progress:2, total:5, icon:'🌍'},
+    ];
+  }
+
+  fmtPoints(n){ return n.toLocaleString('pt-BR') + ' pontos'; }
+
+  goTo(screen){ return () => this.setState({ screen: screen }); }
+  openAttraction(id){ return () => this.setState({ screen: 'detail', selectedId: id, travelState: 'far' }); }
+
+  startTravel(){
+    this.setState({ travelState: 'traveling' });
+    setTimeout(() => this.setState({ screen: 'checkinReady', travelState: 'arrived' }), 1400);
+  }
+
+  doCheckin(){
+    const ATTRACTIONS = this.getAttractions();
+    const a = ATTRACTIONS.find(x => x.id === this.state.selectedId);
+    this.setState(s => ({ screen: 'checkinDone', points: s.points + (a ? a.points : 0) }));
+  }
+
+  continueExploring(){ this.setState({ screen: 'explore', travelState: 'far' }); }
+  goAchievements(){ this.setState({ screen: 'achievements' }); }
+  goBack(){ this.setState({ screen: 'explore' }); }
+
+  selectMapPin(id){ return () => this.setState({ mapSelectedId: id }); }
+  selectFilter(f){ return () => this.setState({ filter: f }); }
+
+  renderVals(){
+    const s = this.state;
+    const IMG = this.getImg();
+    const ATTRACTIONS = this.getAttractions();
+    const sel = ATTRACTIONS.find(a => a.id === s.selectedId) || ATTRACTIONS[0];
+
+    const attractions = ATTRACTIONS.map(a => ({
+      ...a, img: IMG[a.id], pointsLabel: a.points, visited: false, open: this.openAttraction(a.id),
+    }));
+
+    const navDefs = [
+      {key:'explore', icon:'🧭', label:'Explorar'},
+      {key:'map', icon:'🗺️', label:'Mapa'},
+      {key:'achievements', icon:'🏆', label:'Conquistas'},
+      {key:'profile', icon:'👤', label:'Perfil'},
+    ];
+    const navItems = navDefs.map(n => ({
+      icon: n.icon, label: n.label,
+      opacity: s.screen === n.key ? 1 : 0.45,
+      color: s.screen === n.key ? '#2f6fed' : '#8a8f98',
+      select: this.goTo(n.key),
+    }));
+
+    const pins = ATTRACTIONS.map(a => ({
+      left: a.left, top: a.top, icon: a.category === 'Parque' ? '🌳' : a.category === 'Museu' ? '🏛️' : '⛏️',
+      color: a.id === 'mina' ? '#e2452e' : '#2f6fed',
+      select: this.selectMapPin(a.id),
+    }));
+
+    const filters = this.getFilterList().map(f => ({
+      label: f, select: this.selectFilter(f),
+      bg: s.filter === f ? '#111214' : '#fff', color: s.filter === f ? '#fff' : '#333',
+    }));
+
+    const mapSelRaw = ATTRACTIONS.find(a => a.id === s.mapSelectedId);
+    const mapSel = mapSelRaw ? { ...mapSelRaw, img: IMG[mapSelRaw.id], pointsLabel: mapSelRaw.points, open: this.openAttraction(mapSelRaw.id) } : {};
+
+    const achievements = this.getAchievementDefs().map(ac => {
+      const pct = Math.round((ac.progress/ac.total)*100);
+      const done = ac.progress >= ac.total;
+      return {
+        ...ac, pct,
+        badgeBg: done ? '#1f8a5f22' : '#2f6fed15',
+        barColor: done ? '#1f8a5f' : '#2f6fed',
+        progressLabel: done ? 'Concluído' : (ac.progress + '/' + ac.total),
+      };
+    });
+
+    const journey = [
+      {name:'Mina de Visitação Octávio Fontana', when: s.points > 1240 ? 'Agora mesmo' : 'Há 2 dias', img: IMG.mina, pointsLabel: 120},
+      {name:'Museu Augusto Casagrande', when:'Há 5 dias', img: IMG.museu, pointsLabel: 80},
+      {name:'Parque das Nações', when:'Há 1 semana', img: IMG.parque, pointsLabel: 50},
+    ];
+
+    const confetti = Array.from({length:10}).map((_,i) => ({
+      left: (5 + i*9.5) + '%',
+      color: ['#2f6fed','#d98b2b','#1f8a5f','#e2452e'][i%4],
+      dur: (1.4 + (i%3)*0.3).toFixed(1)+'s',
+      delay: (i*0.12).toFixed(2)+'s',
+    }));
+
+    return {
+      isExplore: s.screen==='explore', isMap: s.screen==='map', isAchievements: s.screen==='achievements',
+      isProfile: s.screen==='profile', isDetail: s.screen==='detail',
+      isCheckinReady: s.screen==='checkinReady', isCheckinDone: s.screen==='checkinDone',
+      showNav: ['explore','map','achievements','profile'].includes(s.screen),
+      pointsLabel: this.fmtPoints(s.points),
+      attractions, navItems, pins, filters,
+      hasMapSelection: !!mapSelRaw,
+      mapSel,
+      achievements, journey, confetti,
+      selName: sel.name, selCategory: sel.category, selDistance: sel.distance,
+      selPointsLabel: sel.points, selDescription: sel.description, selHours: sel.hours,
+      selName_img: IMG[sel.id],
+      isFar: s.travelState === 'far', isTraveling: s.travelState === 'traveling',
+      startTravel: this.startTravel, doCheckin: this.doCheckin,
+      continueExploring: this.continueExploring, goAchievements: this.goAchievements, goBack: this.goBack,
+    };
+  }
+}
+</script>
+</body>
+</html>
